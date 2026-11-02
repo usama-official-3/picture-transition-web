@@ -69,14 +69,14 @@ export default function Biriyaniwala() {
         if (i === slides.length - 1) return;
         const next = slides[i + 1]!;
         const at = i * 2 + 1;
-        tl.to(img, { scale: 1.6, y: -120, autoAlpha: 0, filter: "blur(12px)", duration: 1 }, at)
+        tl.to(img, { scale: 1.25, y: -80, autoAlpha: 0, filter: "blur(10px)", duration: 1 }, at)
           .to(word, { yPercent: -60, autoAlpha: 0, duration: 0.8 }, at)
           .to(txt, { y: -30, autoAlpha: 0, stagger: 0.05, duration: 0.5 }, at)
           .set(s, { autoAlpha: 0 }, at + 1)
-          .set(next, { autoAlpha: 1 }, at + 0.4)
-          .from(next.querySelector(".dish-img"), { scale: 0.5, y: 160, rotate: -15, autoAlpha: 0, filter: "blur(12px)", duration: 1 }, at + 0.4)
-          .from(next.querySelector(".dish-word"), { yPercent: 70, autoAlpha: 0, duration: 0.8 }, at + 0.6)
-          .from(next.querySelectorAll(".dish-txt"), { y: 30, autoAlpha: 0, stagger: 0.05, duration: 0.5 }, at + 0.7);
+          .set(next, { autoAlpha: 1 }, at + 0.1)
+          .fromTo(next.querySelector(".dish-img"), { scale: 0.7, y: 120, rotate: -8, autoAlpha: 0, filter: "blur(10px)" }, { scale: 1, y: 0, rotate: 0, autoAlpha: 1, filter: "blur(0px)", duration: 1, ease: "none" }, at + 0.1)
+          .from(next.querySelector(".dish-word"), { yPercent: 70, autoAlpha: 0, duration: 0.8 }, at + 0.3)
+          .from(next.querySelectorAll(".dish-txt"), { y: 30, autoAlpha: 0, stagger: 0.05, duration: 0.5 }, at + 0.4);
       });
       tl.fromTo(".progress-bar", { scaleX: 0 }, { scaleX: 1, ease: "none", duration: tl.duration() }, 0);
 
