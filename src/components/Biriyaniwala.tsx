@@ -67,7 +67,7 @@ export default function Biriyaniwala() {
         // idle float inside each step
         tl.to(img, { scale: 1.06, rotate: i % 2 ? -3 : 3, y: -20, duration: 1, ease: "none" }, i * 2);
         if (i === slides.length - 1) return;
-        const next = slides[i + 1];
+        const next = slides[i + 1]!;
         const at = i * 2 + 1;
         tl.to(img, { scale: 1.6, y: -120, autoAlpha: 0, filter: "blur(12px)", duration: 1 }, at)
           .to(word, { yPercent: -60, autoAlpha: 0, duration: 0.8 }, at)
