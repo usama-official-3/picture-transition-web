@@ -120,8 +120,8 @@
 }
 @utility food-blend {
   mix-blend-mode: lighten;
-  -webkit-mask-image: radial-gradient(circle at center, #000 45%, transparent 70%);
-  mask-image: radial-gradient(circle at center, #000 45%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
+  mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
 }
 @utility vignette {
   background: radial-gradient(ellipse at center, transparent 40%, var(--background) 85%);
