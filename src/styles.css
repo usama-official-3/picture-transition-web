@@ -123,6 +123,37 @@
   -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
   mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
 }
+@utility food-cutout {
+  /* lighten dissolves leftover dark fringes / steam into the page so it doesn't feel like a photo plate */
+  mix-blend-mode: lighten;
+  filter: drop-shadow(0 22px 34px oklch(0 0 0 / 0.4));
+  /* oval + vertical fade (steam melts up, pot base softens down) — both on the img so blend still hits the page */
+  -webkit-mask-image:
+    radial-gradient(ellipse 74% 70% at 50% 46%, #000 32%, transparent 78%),
+    linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 74% 70% at 50% 46%, #000 32%, transparent 78%),
+    linear-gradient(to bottom, transparent 0%, #000 9%, #000 84%, transparent 100%);
+  mask-composite: intersect;
+}
+@utility food-float {
+  /* process steps only: blend + soft TOP dissolve so steam doesn't end in a hard line */
+  mix-blend-mode: lighten;
+  filter: drop-shadow(0 18px 28px oklch(0 0 0 / 0.35));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 18%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 18%,
+    #000 100%
+  );
+}
 @utility vignette {
   background: radial-gradient(ellipse at center, transparent 40%, var(--background) 85%);
 }

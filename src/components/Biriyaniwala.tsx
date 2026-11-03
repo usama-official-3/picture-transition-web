@@ -2,24 +2,25 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import biryani from "@/assets/biryani.jpg";
-import butter from "@/assets/butter-chicken.jpg";
-import tandoori from "@/assets/tandoori.jpg";
-import seekh from "@/assets/seekh.jpg";
-import paneer from "@/assets/paneer.jpg";
-import dal from "@/assets/dal.jpg";
-import naan from "@/assets/naan.jpg";
-import lassi from "@/assets/lassi.jpg";
+import biryani from "@/assets/biryani.png";
+import butter from "@/assets/butter-chicken.png";
+import tandoori from "@/assets/tandoori.png";
+import seekh from "@/assets/seekh.png";
+import seekhFill from "@/assets/seekh.jpg";
+import paneer from "@/assets/paneer.png";
+import dal from "@/assets/dal.png";
+import naan from "@/assets/naan.png";
+import lassi from "@/assets/lassi.png";
 
 const DISHES = [
-  { a: "Chicken Dum", b: "Biryani", word: "Biriyani", tag: "Signature · Dum", price: "$21.90", img: biryani, desc: "Bone-in chicken and saffron basmati, sealed under dough and slow-cooked for ninety minutes." },
-  { a: "Butter", b: "Chicken", word: "Makhani", tag: "Most ordered", price: "$22.90", img: butter, desc: "Tandoori chicken folded into a velvet tomato-butter gravy, finished with cream." },
-  { a: "Tandoori", b: "Chicken", word: "Tandoori", tag: "From the clay oven", price: "$16.90", img: tandoori, desc: "Yogurt and Kashmiri chilli marinade, charred at 480° in the tandoor." },
-  { a: "Lamb Seekh", b: "Kebab", word: "Seekh", tag: "Charcoal grill", price: "$18.90", img: seekh, desc: "Hand-minced lamb with green chilli and coriander, skewered and flame-kissed." },
-  { a: "Paneer", b: "Tikka", word: "Tikka", tag: "Vegetarian", price: "$17.90", img: paneer, desc: "Fresh paneer, peppers and onion in smoky tikka masala, straight off the skewer." },
-  { a: "Dal", b: "Makhani", word: "Dal", tag: "Overnight simmer", price: "$14.90", img: dal, desc: "Black lentils simmered for eighteen hours with butter and cream." },
-  { a: "Garlic Butter", b: "Naan", word: "Naan", tag: "From the clay oven", price: "$5.50", img: naan, desc: "Blistered in the tandoor, brushed with garlic butter and fresh coriander." },
-  { a: "Mango", b: "Lassi", word: "Lassi", tag: "To cool down", price: "$7.50", img: lassi, desc: "Alphonso mango churned with thick curd, cardamom and pistachio." },
+  { a: "Chicken Dum", b: "Biryani", word: "Biriyani", tag: "Signature · Dum", price: "$21.90", img: biryani, cutout: true, desc: "Bone-in chicken and saffron basmati, sealed under dough and slow-cooked for ninety minutes." },
+  { a: "Butter", b: "Chicken", word: "Makhani", tag: "Most ordered", price: "$22.90", img: butter, cutout: true, desc: "Tandoori chicken folded into a velvet tomato-butter gravy, finished with cream." },
+  { a: "Tandoori", b: "Chicken", word: "Tandoori", tag: "From the clay oven", price: "$16.90", img: tandoori, cutout: true, desc: "Yogurt and Kashmiri chilli marinade, charred at 480° in the tandoor." },
+  { a: "Lamb Seekh", b: "Kebab", word: "Seekh", tag: "Charcoal grill", price: "$18.90", img: seekh, cutout: true, desc: "Hand-minced lamb with green chilli and coriander, skewered and flame-kissed." },
+  { a: "Paneer", b: "Tikka", word: "Tikka", tag: "Vegetarian", price: "$17.90", img: paneer, cutout: true, desc: "Fresh paneer, peppers and onion in smoky tikka masala, straight off the skewer." },
+  { a: "Dal", b: "Makhani", word: "Dal", tag: "Overnight simmer", price: "$14.90", img: dal, cutout: true, desc: "Black lentils simmered for eighteen hours with butter and cream." },
+  { a: "Garlic Butter", b: "Naan", word: "Naan", tag: "From the clay oven", price: "$5.50", img: naan, cutout: true, desc: "Blistered in the tandoor, brushed with garlic butter and fresh coriander." },
+  { a: "Mango", b: "Lassi", word: "Lassi", tag: "To cool down", price: "$7.50", img: lassi, cutout: true, desc: "Alphonso mango churned with thick curd, cardamom and pistachio." },
 ];
 
 const WORDS1 = ["Dum Pukht", "Saffron", "Ek Plate Aur", "Basmati", "Ghee", "Kesar"];
@@ -124,8 +125,8 @@ export default function Biriyaniwala() {
         {DISHES.map((d, i) => (
           <div key={d.word} className="dish absolute inset-0">
             <div className="absolute left-1/2 top-[44%] h-[62vh] w-[62vh] max-w-[90vw] -translate-x-1/2 -translate-y-1/2">
-              <img src={d.img} alt={`${d.a} ${d.b}`} width={1024} height={1024} loading={i ? "lazy" : "eager"} className="dish-img food-blend h-full w-full object-contain" />
-              <div className="vignette pointer-events-none absolute inset-0" />
+              <img src={d.img} alt={`${d.a} ${d.b}`} width={1024} height={1024} loading={i ? "lazy" : "eager"} className={`dish-img h-full w-full object-contain ${d.cutout ? "food-cutout" : "food-blend"}`} />
+              {!d.cutout && <div className="vignette pointer-events-none absolute inset-0" />}
             </div>
             <div className="absolute left-6 top-24 max-w-[260px] md:left-10 md:top-28">
               <div className="dish-txt"><Label>◆ Mr. Biriyaniwala</Label></div>
@@ -162,7 +163,7 @@ export default function Biriyaniwala() {
         <div className="absolute inset-x-6 bottom-6 flex items-center gap-6 md:inset-x-10">
           <Label>Scroll to serve the next dish</Label>
           <div className="relative h-px flex-1 bg-border"><div className="progress-bar absolute inset-0 origin-left bg-gold" /></div>
-          <span className="font-serif text-sm text-cream">बिरयानी वाला</span>
+          <span className="font-serif text-sm text-cream">Biriyaniwala</span>
         </div>
       </section>
 
@@ -187,14 +188,22 @@ export default function Biriyaniwala() {
           <h3 className="mt-4 font-serif text-5xl leading-[1.05] text-cream">Ninety minutes we will <em className="text-gold">never</em> let us skip.</h3>
           <p className="mt-4 text-sm text-muted-foreground">No shortcuts, no pressure cookers. This is the way our grandfather did it.</p>
         </div>
-        <div className="steps-track flex gap-8 pl-[45vw]">
+        <div className="steps-track flex items-end gap-10 pl-[45vw] md:gap-14">
           {STEPS.map((s) => (
-            <div key={s.n} className="w-[70vw] shrink-0 md:w-[26vw]">
-              <div className="aspect-[3/4] overflow-hidden rounded-sm bg-card">
-                <img src={s.img} alt={s.t} loading="lazy" width={1024} height={1024} className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" />
+            <div key={s.n} className="w-[78vw] shrink-0 md:w-[30vw]">
+              {/* Full floating cutout — no card crop that chops spices/steam at the edges */}
+              <div className="flex h-[58vh] items-center justify-center md:h-[62vh]">
+                <img
+                  src={s.img}
+                  alt={s.t}
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className="food-float max-h-full max-w-full object-contain transition-transform duration-700 hover:scale-105"
+                />
               </div>
-              <div className="mt-4 flex items-baseline gap-3"><span className="font-serif text-4xl italic text-gold">{s.n}</span><span className="font-serif text-2xl text-cream">{s.t}</span></div>
-              <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
+              <div className="mt-2 flex items-baseline gap-3"><span className="font-serif text-4xl italic text-gold">{s.n}</span><span className="font-serif text-2xl text-cream">{s.t}</span></div>
+              <p className="mt-2 max-w-sm text-sm text-muted-foreground">{s.d}</p>
             </div>
           ))}
         </div>
@@ -202,7 +211,7 @@ export default function Biriyaniwala() {
 
       {/* Finale */}
       <section className="finale flex h-[120vh] items-center justify-center overflow-hidden">
-        <h2 className="finale-word bg-cover bg-clip-text font-display text-[19vw] leading-none text-transparent" style={{ backgroundImage: `url(${seekh})` }}>BIRIYANI</h2>
+        <h2 className="finale-word bg-cover bg-clip-text font-display text-[19vw] leading-none text-transparent" style={{ backgroundImage: `url(${seekhFill})` }}>BIRIYANI</h2>
       </section>
 
       <footer id="visit" className="border-t border-border px-6 py-16 md:px-10">
